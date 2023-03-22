@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  SectionContainerComponent,
-  createSection,
   SectionType,
+  createSection,
+  SectionContainerComponent,
 } from '../../section-container/section-container.component';
 import { ExampleDataService } from '../../example-data.service';
-
 @Component({
   selector: 'app-example-input-page',
   standalone: true,
@@ -15,8 +14,9 @@ import { ExampleDataService } from '../../example-data.service';
   styleUrls: ['./example-input-page.component.scss'],
 })
 export class ExampleInputPageComponent {
-  title = 'My-Ng3';
+  title = 'my-ng3';
   data!: SectionType[];
+
   constructor(private dataService: ExampleDataService) {
     this.data = this.dataService.load();
   }
@@ -27,11 +27,13 @@ export class ExampleInputPageComponent {
     this.data.push(createSection());
     this.storeData();
   }
+
+  onChanged(): void {
+    this.storeData();
+  }
+
   removeChild(index: number): void {
     this.data.splice(index, 1);
     this.data.splice(index, 1);
-  }
-  onChanged(): void {
-    this.storeData();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 export type InputType = { value: number };
@@ -15,16 +15,15 @@ export function createInput(): InputType {
 export class InputContainerComponent implements OnInit {
   @Input() no!: number;
   @Input() data!: InputType;
-  @Input() removable: boolean = true;
+  @Input() removeable: boolean = true;
 
   @Output() remove = new EventEmitter<void>();
   @Output() dataChanged = new EventEmitter<InputType | null>();
 
   protected readonly id = Math.floor(Math.random() * 6);
-
   ngOnInit(): void {
     if (!this.data || !this.no) {
-      throw new Error('value an no properties must be specified');
+      throw new Error('value an no properties must be speficied');
     }
   }
 
